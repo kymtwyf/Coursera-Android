@@ -1,8 +1,7 @@
 package course.labs.fragmentslab;
 
-import course.examples.Fragments.DynamicLayout.R;
-import course.examples.Fragments.DynamicLayout.TitlesFragment;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,14 +29,13 @@ public class MainActivity extends Activity implements
 
 			//TODO 1 - add the FriendsFragment to the fragment_container
 			
-//			FrameLayout fragment_container = (FrameLayout) findViewById(R.id.fragment_container);
-//			
-//			fragment_container.add
-//			FragmentTransaction fragmentTransaction = mFragmentManager
-//					.beginTransaction();
-//			fragmentTransaction.add(R.id.title_fragment_container,
-//					new TitlesFragment());
-//			fragmentTransaction.commit();
+			FragmentManager mFragmentManager = getFragmentManager();
+
+			FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+			
+			fragmentTransaction.add(R.id.fragment_container,mFriendsFragment);
+			
+			fragmentTransaction.commit();
 
 			
 
@@ -77,7 +75,15 @@ public class MainActivity extends Activity implements
 
 			//TODO 2 - replace the fragment_container with the FeedFragment
 			
+			FragmentManager mFragmentManager = getFragmentManager();
 
+			FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+			
+			fragmentTransaction.replace(R.id.fragment_container,mFeedFragment);
+			
+			fragmentTransaction.addToBackStack(null);
+			
+			fragmentTransaction.commit();
 			
 
 			// execute transaction now

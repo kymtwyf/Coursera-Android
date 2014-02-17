@@ -1,3 +1,7 @@
 private.ppk
+*.apk
 .metadata*/
 workspace/.metadata/*
+*.dll
+workspace/.metadata/
+workspace/.metadata/

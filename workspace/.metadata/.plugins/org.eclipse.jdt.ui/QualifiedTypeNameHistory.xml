@@ -2,4 +2,5 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="course.labs.activitylab.R.id"/>
 <fullyQualifiedTypeName name="android.R"/>
+<fullyQualifiedTypeName name="android.app.FragmentManager"/>
 </qualifiedTypeNameHistroy>
