@@ -1,0 +1,12 @@
+1.
+  b)
+    a. [ActivityOne]onCreate()->onStart()->onResume()->onPause()->onStop()
+	   -->[ActivityTwo]onCreate()->onStart()->onResume()
+  c)
+    a. [following b)a.]->[ActivityTwo]onPause()->onStop()->onDestory()
+	   -->[ActivityOne]->onRestart()->onStart()->onResume()
+  d)
+    a. [following c)a.]->[ActivityOne]->onPause()->onStop()
+	   -->[ActivityTwo]onCreate()->onStart()->onResume()->onPause()->onStop()
+  e)
+    a. [following d)a.]->[ActivityTwo]->onRestart()->onStart()->onResume()
