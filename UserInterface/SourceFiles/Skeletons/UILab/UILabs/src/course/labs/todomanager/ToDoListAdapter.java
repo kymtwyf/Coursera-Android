@@ -110,7 +110,7 @@ public class ToDoListAdapter extends BaseAdapter {
 		final CheckBox statusView =(CheckBox) itemLayout
 				.findViewById(R.id.statusCheckBox);
 		
-		
+		statusView.setChecked((toDoItem.getStatus() == Status.DONE ? true : false));
 		
 		statusView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -122,7 +122,7 @@ public class ToDoListAdapter extends BaseAdapter {
 				// is called when the user toggles the status checkbox
 				if(isChecked)
 		            toDoItem.setStatus(Status.DONE);
-		            else
+	            else
 		            toDoItem.setStatus(Status.NOTDONE);
 
 
@@ -133,8 +133,8 @@ public class ToDoListAdapter extends BaseAdapter {
 		//TODO - Display Priority in a TextView
 
 		final TextView priorityView = (TextView) itemLayout
-				.findViewById(R.id.priority);
-//		priorityView.setText(toDoItem.getPriority().toString());
+				.findViewById(R.id.PriorityLabel);
+		priorityView.setText(toDoItem.getPriority().toString());
 		
 		// TODO - Display Time and Date. 
 		// Hint - use ToDoItem.FORMAT.format(toDoItem.getDate()) to get date and time String
