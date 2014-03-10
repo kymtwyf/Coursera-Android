@@ -3,4 +3,18 @@
 <fullyQualifiedTypeName name="course.labs.activitylab.R.id"/>
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.app.FragmentManager"/>
+<fullyQualifiedTypeName name="course.labs.todomanager.ToDoManagerActivity"/>
+<fullyQualifiedTypeName name="course.labs.todomanager.AddToDoActivity"/>
+<fullyQualifiedTypeName name="course.labs.todomanager.R.string"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="android.R.drawable"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="course.labs.notificationslab.DownloaderTask"/>
+<fullyQualifiedTypeName name="android.content.BroadcastReceiver"/>
+<fullyQualifiedTypeName name="android.app.PendingIntent"/>
+<fullyQualifiedTypeName name="android.webkit.WebView.FindListener"/>
+<fullyQualifiedTypeName name="android.app.Notification.Builder"/>
+<fullyQualifiedTypeName name="course.labs.notificationslab.R.raw"/>
+<fullyQualifiedTypeName name="course.labs.notificationslab.R.drawable"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
 </qualifiedTypeNameHistroy>
