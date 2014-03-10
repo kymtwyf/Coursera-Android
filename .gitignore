@@ -8,3 +8,5 @@ workspace/.metadata/
 workspace/.metadata/
 workspace/.metadata/
 */bin/*
+workspace/.metadata/*
+*.pdf
