@@ -91,7 +91,7 @@ public class MainActivity extends Activity implements SelectionListener {
 			// TODO:
 			// Start new AsyncTask to download Tweets from network
 
-			new DownloaderTask(this).execute(URL_LGAGA,URL_RBLACK,URL_TSWIFT);
+			new DownloaderTask(this).execute(URL_TSWIFT,URL_RBLACK,URL_LGAGA);
 
 			
 			// Set up a BroadcastReceiver to receive an Intent when download
@@ -114,7 +114,6 @@ public class MainActivity extends Activity implements SelectionListener {
 			};
 
 		} else {
-
 			loadTweetsFromFile();
 			parseJSON();
 			updateFeed();
@@ -193,8 +192,9 @@ public class MainActivity extends Activity implements SelectionListener {
 		// TODO:
 		// Unregister the BroadcastReceiver
 
-		unregisterReceiver(mRefreshReceiver);
-		
+		if (mRefreshReceiver != null) {
+		     unregisterReceiver(mRefreshReceiver);
+		}
 		
 		super.onPause();
 
