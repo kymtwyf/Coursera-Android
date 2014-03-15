@@ -11,3 +11,6 @@ workspace/.metadata/
 workspace/.metadata/*
 *.pdf
 workspace/.metadata/
+*.class
+*.zip
+*.DS_Store

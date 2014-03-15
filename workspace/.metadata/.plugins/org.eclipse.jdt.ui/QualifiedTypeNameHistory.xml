@@ -17,4 +17,7 @@
 <fullyQualifiedTypeName name="course.labs.notificationslab.R.raw"/>
 <fullyQualifiedTypeName name="course.labs.notificationslab.R.drawable"/>
 <fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.media.SoundPool.OnLoadCompleteListener"/>
+<fullyQualifiedTypeName name="course.labs.GraphicsLab.R.raw"/>
+<fullyQualifiedTypeName name="course.labs.GraphicsLab.BubbleActivity.BubbleView"/>
 </qualifiedTypeNameHistroy>
