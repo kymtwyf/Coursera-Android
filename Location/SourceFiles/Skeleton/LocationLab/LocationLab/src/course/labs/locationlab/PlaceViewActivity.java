@@ -3,19 +3,18 @@ package course.labs.locationlab;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class PlaceViewActivity extends ListActivity implements LocationListener {
 	private static final long FIVE_MINS = 5 * 60 * 1000;
@@ -44,16 +43,26 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
         // This class is a ListActivity, so it has its own ListView
         // ListView's adapter should be a PlaceViewAdapter
 
-		
+		mAdapter = new PlaceViewAdapter(getApplicationContext());
         // TODO - add a footerView to the ListView
         // You can use footer_view.xml to define the footer
-
-
-		
+		LayoutInflater inflater = LayoutInflater.from(PlaceViewActivity.this);
+		TextView footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
+		getListView().setFooterDividersEnabled(true);
+		getListView().addFooterView(footerView);
         // TODO - When the footerView's onClick() method is called, it must issue the
         // following log call
         // log("Entered footerView.OnClickListener.onClick()");
-        
+        footerView.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+			      log("Entered footerView.OnClickListener.onClick()");
+			      
+			      
+			}
+        	
+        });
         // footerView must respond to user clicks.
         // Must handle 3 cases:
         // 1) The current location is new - download new Place Badge. Issue the
