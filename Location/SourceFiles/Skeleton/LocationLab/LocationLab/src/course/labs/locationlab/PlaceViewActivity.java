@@ -90,8 +90,9 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 
         // TODO - Check NETWORK_PROVIDER for an existing location reading.
         // Only keep this last reading if it is fresh - less than 5 minutes old.
-
-	
+		if(mLastLocationReading != null && age(mLastLocationReading) > mMinTime*60) mLastLocationReading = null;
+		
+		mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime*60, mMinDistance, PlaceViewActivity.this);
 		
         // TODO - register to receive location updates from NETWORK_PROVIDER
 
@@ -106,7 +107,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 
 		// TODO - unregister for location updates
 
-
+		mLocationManager.removeUpdates(PlaceViewActivity.this);
 		
 		super.onPause();
 	}
@@ -129,7 +130,13 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
         // the current location
         // 3) If the current location is newer than the last locations, keep the
         // current location.
-
+		if(null == mLastLocationReading){
+			mLastLocationReading = currentLocation;
+		}else if(currentLocation.getTime() < mLastLocationReading.getTime()){
+			//do nothing
+		}else {
+			mLastLocationReading = currentLocation;
+		}
 
 	}
 
