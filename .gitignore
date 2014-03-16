@@ -15,3 +15,5 @@ workspace/.metadata/
 *.zip
 *.DS_Store
 workspace/.metadata/.*
+*.dex
+Graphics/SourceFiles/Skeleton/GraphicsLab/GraphicsLab/bin/*

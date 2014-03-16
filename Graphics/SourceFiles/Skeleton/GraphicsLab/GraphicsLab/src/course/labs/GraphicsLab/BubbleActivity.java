@@ -98,6 +98,7 @@ public class BubbleActivity extends Activity {
 			public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
 				// TODO Auto-generated method stub
 				if(0 == status){
+					log("start to setup gesture detector");
 					setupGestureDetector();
 				}
 				
@@ -139,7 +140,13 @@ public class BubbleActivity extends Activity {
 				// You can get all Views in mFrame using the
 				// ViewGroup.getChildCount() method
 
-				
+				for(int i = 0 ; i < mFrame.getChildCount(); i ++){
+					BubbleView bv = (BubbleView)mFrame.getChildAt(i);
+					if(bv.intersects(event1.getRawX(), event1.getRawY())){
+						bv.deflect(velocityX, velocityY);
+						return true;
+					}
+				}
 				
 				
 				return false;
@@ -158,14 +165,17 @@ public class BubbleActivity extends Activity {
 				// ViewGroup.getChildCount() method
 
 
-				
-				
-				
-				
-				
-				
-				
-				
+				for(int i = 0 ; i < mFrame.getChildCount(); i ++){
+					BubbleView bv = (BubbleView)mFrame.getChildAt(i);
+					if(bv.intersects(event.getX(), event.getY())){
+						bv.stop(true);
+						return true;
+					}
+				}
+				BubbleView bubble = new BubbleView(mFrame.getContext(), event
+						.getX(), event.getY());
+				mFrame.addView(bubble);
+				bubble.start();
 				
 				
 				return false;
