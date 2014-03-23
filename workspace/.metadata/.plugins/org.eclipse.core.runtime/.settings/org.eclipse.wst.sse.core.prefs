@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-task-tag-projects-already-scanned=GraphicsLab,GraphicsLabTest,GesturesActivity,IndicateTouchLocationActivity,ViewFlipperTestActivity
+task-tag-projects-already-scanned=ContactsListExample,ContentProviderCustom,ContentProviderLabContentProvider,ContentProviderLabTest,ContentProviderLabUser,CustomContactProviderDemo,InsertActivity

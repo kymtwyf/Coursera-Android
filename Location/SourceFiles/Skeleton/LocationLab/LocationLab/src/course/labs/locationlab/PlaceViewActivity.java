@@ -61,24 +61,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 			@Override
 			public void onClick(View v) {
 			      log("Entered footerView.OnClickListener.onClick()");
-			      
-//			      if(null == mLastLocationReading){
-//			 			log("Location data is not available");
-//			 			return;
-////			 			 log("Starting Place Download");
-////			 			 new PlaceDownloaderTask(PlaceViewActivity.this).execute(mLastLocationReading);
-//			 		}else {
-//			 			
-//			 			if(mAdapter.intersects(mLastLocationReading)){
-//			 				log("You already have this location badge");
-//			 				Toast toast = Toast.makeText(getApplicationContext(), "You already have this location badge", Toast.LENGTH_LONG);
-//			 				toast.show();
-//			 			}else {
-//			 				new PlaceDownloaderTask(PlaceViewActivity.this).execute(mLastLocationReading);
-//			 				log("Starting Place Download");
-//			 			}
-//			 		}
-			      
+
 			      	if (mLastLocationReading == null) {
 						log("Location data is not available");
 						return;

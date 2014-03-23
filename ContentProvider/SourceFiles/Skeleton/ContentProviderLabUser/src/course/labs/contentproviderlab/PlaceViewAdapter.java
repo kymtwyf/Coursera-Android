@@ -71,8 +71,12 @@ public class PlaceViewAdapter extends CursorAdapter {
 		// current place to the list
 		
 
-            
-            
+            list.clear();
+            newCursor.moveToFirst();
+            do{
+            	list.add(getPlaceRecordFromCursor(newCursor));
+            	newCursor.moveToNext();
+            }while(!newCursor.isLast());
             
             
             
@@ -147,7 +151,13 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 			// TODO - Insert new record into the ContentProvider
 
-			
+			ContentValues cv = new ContentValues();
+			cv.put(PlaceBadgesContract.PLACE_NAME,listItem.getPlace());
+			cv.put(PlaceBadgesContract.COUNTRY_NAME, listItem.getCountryName());
+			cv.put(PlaceBadgesContract.FLAG_BITMAP_PATH, listItem.getFlagBitmapPath());
+			cv.put(PlaceBadgesContract.LAT, listItem.getLat());
+			cv.put(PlaceBadgesContract.LON, listItem.getLon());
+			mContext.getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, cv);
 
 		
         
@@ -167,7 +177,7 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 		// TODO - delete all records in the ContentProvider
 
-
+		mContext.getContentResolver().delete(null,null,null);
         
         
         
