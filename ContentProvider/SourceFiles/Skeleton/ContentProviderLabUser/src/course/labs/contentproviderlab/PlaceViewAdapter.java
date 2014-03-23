@@ -72,13 +72,12 @@ public class PlaceViewAdapter extends CursorAdapter {
 		
 
             list.clear();
-            newCursor.moveToFirst();
-            do{
-            	list.add(getPlaceRecordFromCursor(newCursor));
-            	newCursor.moveToNext();
-            }while(!newCursor.isLast());
-            
-            
+            if (newCursor.moveToFirst()) {
+	    	  do {
+	    	     list.add(getPlaceRecordFromCursor(newCursor));
+	    	   } while (newCursor.moveToNext() == true);
+	    	}
+    
             
             // Set the NotificationURI for the new cursor
 			newCursor.setNotificationUri(mContext.getContentResolver(),
@@ -177,7 +176,7 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 		// TODO - delete all records in the ContentProvider
 
-		mContext.getContentResolver().delete(null,null,null);
+		mContext.getContentResolver().delete(PlaceBadgesContract.CONTENT_URI,null,null);
         
         
         
