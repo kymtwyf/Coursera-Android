@@ -17,3 +17,4 @@ workspace/.metadata/
 workspace/.metadata/.*
 *.dex
 Graphics/SourceFiles/Skeleton/GraphicsLab/GraphicsLab/bin/*
+*.orig

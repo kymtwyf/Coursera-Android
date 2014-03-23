@@ -3,6 +3,7 @@ package course.labs.locationlab;
 import java.util.ArrayList;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlaceViewActivity extends ListActivity implements LocationListener {
 	private static final long FIVE_MINS = 5 * 60 * 1000;
@@ -46,20 +48,52 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		mAdapter = new PlaceViewAdapter(getApplicationContext());
         // TODO - add a footerView to the ListView
         // You can use footer_view.xml to define the footer
-		LayoutInflater inflater = LayoutInflater.from(PlaceViewActivity.this);
+		LayoutInflater inflater = getLayoutInflater();
 		TextView footerView = (TextView)inflater.inflate(R.layout.footer_view, null);
 		getListView().setFooterDividersEnabled(true);
 		getListView().addFooterView(footerView);
+		getListView().setAdapter(mAdapter);
         // TODO - When the footerView's onClick() method is called, it must issue the
         // following log call
         // log("Entered footerView.OnClickListener.onClick()");
         footerView.setOnClickListener(new OnClickListener(){
 
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View v) {
 			      log("Entered footerView.OnClickListener.onClick()");
 			      
+//			      if(null == mLastLocationReading){
+//			 			log("Location data is not available");
+//			 			return;
+////			 			 log("Starting Place Download");
+////			 			 new PlaceDownloaderTask(PlaceViewActivity.this).execute(mLastLocationReading);
+//			 		}else {
+//			 			
+//			 			if(mAdapter.intersects(mLastLocationReading)){
+//			 				log("You already have this location badge");
+//			 				Toast toast = Toast.makeText(getApplicationContext(), "You already have this location badge", Toast.LENGTH_LONG);
+//			 				toast.show();
+//			 			}else {
+//			 				new PlaceDownloaderTask(PlaceViewActivity.this).execute(mLastLocationReading);
+//			 				log("Starting Place Download");
+//			 			}
+//			 		}
 			      
+			      	if (mLastLocationReading == null) {
+						log("Location data is not available");
+						return;
+					}
+					
+					if (mAdapter.intersects(mLastLocationReading)) {
+						log("You already have this location badge");
+						Toast.makeText(getApplicationContext(),
+								"You already have this location badge", Toast.LENGTH_LONG).show();
+						return;
+						}
+
+					log("Starting Place Download");
+					PlaceDownloaderTask dndtask = new PlaceDownloaderTask(PlaceViewActivity.this);
+					dndtask.execute(mLastLocationReading);
 			}
         	
         });
@@ -78,13 +112,16 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
         // Issue the following log call:
         // log("Location data is not available");
  		
+ 		
+        super.onCreate(savedInstanceState);
 
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		if (null == (mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE)))
+			finish();
 		mMockLocationProvider = new MockLocationProvider(
 				LocationManager.NETWORK_PROVIDER, this);
 
@@ -92,7 +129,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
         // Only keep this last reading if it is fresh - less than 5 minutes old.
 		if(mLastLocationReading != null && age(mLastLocationReading) > mMinTime*60) mLastLocationReading = null;
 		
-		mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime*60, mMinDistance, PlaceViewActivity.this);
+		mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime, mMinDistance, PlaceViewActivity.this);
 		
         // TODO - register to receive location updates from NETWORK_PROVIDER
 
